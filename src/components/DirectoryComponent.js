@@ -10,6 +10,7 @@ import {
 import CampsiteInfo from "./CampsiteInfoComponents";
 
 class Directory extends Component {
+  /*
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +21,7 @@ class Directory extends Component {
   onCampsiteSelect(campsite) {
     this.setState({ selectedCampsite: campsite });
   }
-
+  */
   render() {
     const directory = this.props.campsites.map(campsite => {
       return (
