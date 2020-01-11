@@ -10,6 +10,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "typeface-lobster";
 import "typeface-open-sans";
+/*
+Adding
+Use "npm install" to look in hte lost of dependencies and install all in hte list.
+*/
+import "font-awesome/css/font-awesome.css";
+import "bootstrap-social/bootstrap-social.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
