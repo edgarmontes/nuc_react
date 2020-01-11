@@ -8,12 +8,15 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      /*Entry point for all the components used in this file*/
+      /*If we change the state directly the entire DOM reloads and defeats the reason to use react*/
       campsites: CAMPSITES,
-      selectedCampsite: null
+      selectedCampsite: null //{}
     };
   }
 
   onCampsiteSelect(campsiteID) {
+    /*setState comes from Component and it is a method to update the state to React DOM*/
     this.setState({ selectedCampsite: campsiteID });
   }
 
