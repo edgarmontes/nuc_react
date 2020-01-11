@@ -6,6 +6,9 @@ import CampsiteInfo from "./CampsiteInfoComponents";
 //Adding
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
+//Adding
+import Home from "./HomeComponent";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 class Main extends Component {
   constructor(props) {
@@ -13,8 +16,7 @@ class Main extends Component {
     this.state = {
       /*Entry point for all the components used in this file*/
       /*If we change the state directly the entire DOM reloads and defeats the reason to use react*/
-      campsites: CAMPSITES,
-      selectedCampsite: null //{}
+      campsites: CAMPSITES
     };
   }
 
@@ -24,18 +26,23 @@ class Main extends Component {
   }
 
   render() {
+    const HomePage = () => {
+      return <Home />;
+    };
+
     return (
       <div>
-        <Header></Header>
-        <Navbar dark color="primary">
-          <div className="container">
-            <NavbarBrand href="/">NuCamp</NavbarBrand>
-          </div>
-        </Navbar>
-        <Directory
-          campsites={this.state.campsites}
-          onClick={campsiteID => this.onCampsiteSelect(campsiteID)}
-        />
+        <Header />
+        <Switch>
+          <Route path="/home" component={HomePage} />
+          <Route
+            exact
+            path="/directory"
+            render={() => <Directory campsites={this.state.campsites} />}
+          />
+          <Redirect to="/home" />
+        </Switch>
+
         <CampsiteInfo
           campsite={
             this.state.campsites.filter(
@@ -43,7 +50,7 @@ class Main extends Component {
             )[0]
           }
         ></CampsiteInfo>
-        <Footer></Footer>
+        <Footer />
       </div>
     );
   }
