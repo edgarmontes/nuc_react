@@ -9,6 +9,12 @@ import Footer from "./FooterComponent";
 //Adding
 import Home from "./HomeComponent";
 import { Switch, Route, Redirect } from "react-router-dom";
+//Adding
+import Contact from "./ContactComponent";
+//Adding
+import { COMMENTS } from "../shared/comments";
+import { PARTNERS } from "../shared/partners";
+import { PROMOTIONS } from "../shared/promotions";
 
 class Main extends Component {
   constructor(props) {
@@ -16,7 +22,10 @@ class Main extends Component {
     this.state = {
       /*Entry point for all the components used in this file*/
       /*If we change the state directly the entire DOM reloads and defeats the reason to use react*/
-      campsites: CAMPSITES
+      campsites: CAMPSITES,
+      comments: COMMENTS,
+      partners: PARTNERS,
+      promotions: PROMOTIONS
     };
   }
 
@@ -27,7 +36,17 @@ class Main extends Component {
 
   render() {
     const HomePage = () => {
-      return <Home />;
+      return (
+        <Home
+          campsite={
+            this.state.campsites.filter(campsite => campsite.featured)[0]
+          }
+          promotion={
+            this.state.promotions.filter(promotion => promotion.featured)[0]
+          }
+          partner={this.state.partners.filter(partner => partner.featured)[0]}
+        />
+      );
     };
 
     return (
@@ -40,6 +59,7 @@ class Main extends Component {
             path="/directory"
             render={() => <Directory campsites={this.state.campsites} />}
           />
+          <Route exact path="/contactus" component={Contact} />
           <Redirect to="/home" />
         </Switch>
 
