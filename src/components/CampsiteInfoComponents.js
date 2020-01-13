@@ -1,5 +1,16 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardBody, CardText, CardTitle } from "reactstrap";
+//Adding
+import { Link } from "react-router-dom";
+import {
+  Card,
+  CardImg,
+  CardBody,
+  CardText,
+  CardImgOverlay,
+  CardTitle,
+  Breadcrumb,
+  BreadcrumbItem
+} from "reactstrap";
 
 function RenderComments({ comments }) {
   if (comments) {
@@ -45,6 +56,18 @@ function CampsiteInfo(props) {
   if (props.campsite) {
     return (
       <div className="container">
+        <div className="row">
+          <div className="col">
+            <Breadcrumb>
+              <BreadcrumbItem>
+                <Link to="/directory">Directory</Link>
+              </BreadcrumbItem>
+              <BreadcrumbItem active>{props.campsite.name}</BreadcrumbItem>
+            </Breadcrumb>
+            <h2>{props.campsite.name}</h2>
+            <hr />
+          </div>
+        </div>
         <div className="row">
           <RenderCampsite campsite={props.campsite} />
           <RenderComments comments={props.comments} />
