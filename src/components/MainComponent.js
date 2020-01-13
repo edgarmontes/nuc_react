@@ -15,6 +15,8 @@ import Contact from "./ContactComponent";
 import { COMMENTS } from "../shared/comments";
 import { PARTNERS } from "../shared/partners";
 import { PROMOTIONS } from "../shared/promotions";
+//Adding
+import About from "./AboutComponent";
 
 class Main extends Component {
   constructor(props) {
@@ -76,6 +78,7 @@ class Main extends Component {
           />
           <Route path="/directory/:campsiteId" component={CampsiteWithId} />
           <Route exact path="/contactus" component={Contact} />
+          <Route exact path="/aboutus" component={About} />
           <Redirect to="/home" />
         </Switch>
 
