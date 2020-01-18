@@ -19,6 +19,9 @@ import {
 import { Link } from "react-router-dom";
 import { Control, LocalForm, Errors } from "react-redux-form";
 
+const maxLength = len => val => !val || val.length <= len;
+const minLength = len => val => val && val.length >= len;
+
 function RenderCampsite({ campsite }) {
   return (
     <div className="col-md-5 m-1">
@@ -100,7 +103,9 @@ class CommentForm extends Component {
 
   handleSubmit(values) {
     console.log("Current state is: " + JSON.stringify(values));
-    alert("Current state is: " + JSON.stringify(values));
+    alert(
+      `Rating:${values.rating} Name:${values.author} Comments: ${values.text}`
+    );
   }
 
   render() {
@@ -135,7 +140,21 @@ class CommentForm extends Component {
                       model=".author"
                       id="author"
                       name="author"
+                      validators={{
+                        minLength: minLength(2),
+                        maxLength: maxLength(15)
+                      }}
                     ></Control.text>
+                    <Errors
+                      className="text-danger"
+                      model=".author"
+                      show="touched"
+                      component="div"
+                      messages={{
+                        minLength: "Must be at least 2 characters",
+                        maxLength: "Must be 15 characters or less"
+                      }}
+                    />
                   </Col>
                 </Row>
                 <Row className="form-group">
