@@ -11,10 +11,13 @@ import {
   Button,
   ModalHeader,
   ModalBody,
-  Modal
+  Modal,
+  Col,
+  Row,
+  Label
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { LocalForm } from "react-redux-form";
+import { Control, LocalForm, Errors } from "react-redux-form";
 
 function RenderCampsite({ campsite }) {
   return (
@@ -102,19 +105,64 @@ class CommentForm extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div>
         <Button outline onClick={this.toggle}>
           Submit Comment
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Modal Title</ModalHeader>
           <ModalBody>
-            <LocalForm
-              onSubmit={values => this.handleSubmit(values)}
-            ></LocalForm>
+            <div className="contact-modal">
+              <LocalForm onSubmit={values => this.handleSubmit(values)}>
+                <Row className="form-group">
+                  <Col md={{ size: 12 }}>
+                    <Label htmlFor="rating" md={2}>
+                      Rating
+                    </Label>
+                    <Control.select model=".rating" id="rating" name="rating">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </Control.select>
+                  </Col>
+                </Row>
+                <Row className="form-group">
+                  <Col md={{ size: 12 }}>
+                    <Label htmlFor="author">Your Name</Label>
+                    <Control.text
+                      model=".author"
+                      id="author"
+                      name="author"
+                    ></Control.text>
+                  </Col>
+                </Row>
+                <Row className="form-group">
+                  <Col md={{ size: 12 }}>
+                    <Label htmlFor="text" md={2}>
+                      Comment
+                    </Label>
+                    <Control.textarea
+                      row="6"
+                      model=".text"
+                      id="text"
+                      name="text"
+                    ></Control.textarea>
+                  </Col>
+                </Row>
+                <Row className="form-group">
+                  <Col md={{ size: 12 }}>
+                    <Button type="submit" color="primary">
+                      Send Feedback
+                    </Button>
+                  </Col>
+                </Row>
+              </LocalForm>
+            </div>
           </ModalBody>
         </Modal>
-      </React.Fragment>
+      </div>
     );
   }
 }
