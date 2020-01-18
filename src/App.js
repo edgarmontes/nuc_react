@@ -1,21 +1,26 @@
-import React, { Component } from "react";
-import Main from "./components/MainComponent";
-import "./App.css";
-//Adding
-import { BrowserRouter } from "react-router-dom";
+import React, {Component} from 'react';
+import './App.css';
+import Main from './components/MainComponent'
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { ConfigureStore } from './redux/configureStore'
+
 
 class App extends Component {
-  render() {
-    return (
+
+  render(){
+    const store = ConfigureStore();
+
+    return(
+    <Provider store={store}>
       <BrowserRouter>
         <div className="App">
           <Main></Main>
         </div>
       </BrowserRouter>
-    );
+    </Provider>
+    )
   }
 }
 
-/*A JavaScript moculde is a JavaScript file that contains at least one export.*/
-/*This is a new branch 1920*/
 export default App;
