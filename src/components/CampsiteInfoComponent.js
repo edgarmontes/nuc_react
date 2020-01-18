@@ -14,6 +14,7 @@ import {
   Modal
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { LocalForm } from "react-redux-form";
 
 function RenderCampsite({ campsite }) {
   return (
@@ -94,6 +95,11 @@ class CommentForm extends Component {
     this.setState({ modal: !this.state.modal });
   };
 
+  handleSubmit(values) {
+    console.log("Current state is: " + JSON.stringify(values));
+    alert("Current state is: " + JSON.stringify(values));
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -102,7 +108,11 @@ class CommentForm extends Component {
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Modal Title</ModalHeader>
-          <ModalBody></ModalBody>
+          <ModalBody>
+            <LocalForm
+              onSubmit={values => this.handleSubmit(values)}
+            ></LocalForm>
+          </ModalBody>
         </Modal>
       </React.Fragment>
     );
