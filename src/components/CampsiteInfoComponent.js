@@ -101,12 +101,12 @@ class CommentForm extends Component {
     };
   }
 
-  toggle = () => {
+  toggleModal = () => {
     this.setState({ modal: !this.state.modal });
   };
 
   handleSubmit(values) {
-    this.toggle();
+    this.toggleModal();
     this.props.addComment(
       this.props.campsiteId,
       values.rating,
@@ -118,11 +118,11 @@ class CommentForm extends Component {
   render() {
     return (
       <div>
-        <Button outline onClick={this.toggle}>
+        <Button outline onClick={this.toggleModal}>
           Submit Comment
         </Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Modal Title</ModalHeader>
+        <Modal isOpen={this.state.modal} toggleModal={this.toggleModal}>
+          <ModalHeader toggleModal={this.toggleModal}>Modal Title</ModalHeader>
           <ModalBody>
             <div className="contact-modal">
               <LocalForm onSubmit={values => this.handleSubmit(values)}>
