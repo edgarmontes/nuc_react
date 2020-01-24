@@ -8,7 +8,6 @@ import About from "./AboutComponent";
 import Contact from "./ContactComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { addComment } from "../redux/ActionCreators";
 import { addComment, fetchCampsites } from "../redux/ActionCreators";
 
 const mapStateToProps = state => {
